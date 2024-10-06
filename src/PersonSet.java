@@ -9,20 +9,31 @@ public class PersonSet implements PersonList
     @Override
     public void add(Person p)
     {
-
+        if(!people.contains(p))
+        {
+            people.add(p);
+        }
     }
 
     //method that gets the index of the person in the arraylist
     @Override
     public Person get(int index)
     {
-        return people.get(index);   //PLACEHOLDER
+        return people.get(index);
     }
 
     //toString Method that will alter the toString method in Person
     @Override
     public String toString()
     {
-        return String.format("%10s %10s %10s", "Name", "Height (cm)", "Weight (kg)"+super.toString());
+        //create a string that can be added to the return and loop through the arraylist
+        String listToString = "";
+        for(int i=0; i<people.size(); i++)
+        {
+            listToString += people.get(i)+"\n";
+        }
+
+        //return the header and the contents of the arraylist
+        return String.format("%-10s %10s %10s", "Name", "Height (cm)", "Weight (kg)\n"+listToString);
     }
 }

@@ -36,11 +36,11 @@ public class Main
     {
         //instantiate objects of type Person and PersonSet for testing
         Person personObject = new Person("Billy", 29, 123);
-        PersonSet personSetObject = new PersonSet();
+        PersonList personSetObject = new PersonSet();
 
-        //test for personObject and personSetObject
-        System.out.println(personObject.toString());
-        System.out.println();
+        //test for personObject
+        System.out.println("This is for testing purposes\n"+personObject.toString()+"\n");
+        System.out.println("This is a list of all of the people in hr.txt");
 
         //use try catch for file input
         try {
@@ -66,12 +66,15 @@ public class Main
                 double height = fileReader.nextDouble();
                 double weight = fileReader.nextDouble();
 
-                //create a new data of HurricaneRowData type then add it to the arrayList
+                //create a new data of Person type then print and add it to the arrayList
                 Person newPerson = new Person(name, height, weight);
                 System.out.println(newPerson.toString());
-                //PersonSet.add(newPerson);
+                personSetObject.add(newPerson);
 
             }   //end of while loop
+
+            //print out list without duplicates
+            System.out.println("\n"+personSetObject.toString());
 
             //close the scanner that reads data from file
             fileReader.close();
@@ -81,17 +84,18 @@ public class Main
             System.out.println("sorry your file cannot be found");
         }   //end of catch
 
+        //write a file for output using try catch
 		try
 		{
 			FileWriter fileWriterOrder = new FileWriter("outputfile.txt");
 			fileWriterOrder.write("testing");
 			fileWriterOrder.close();
-		}
+		}   //end of try
 		catch(IOException e)
 		{
 			e.printStackTrace();
 			System.out.println(e);
 			System.exit(1);
-		}
-    }
-}
+		}   //end of catch
+    }   //end of main
+}   //end of class
