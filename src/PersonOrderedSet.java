@@ -8,14 +8,16 @@ public class PersonOrderedSet extends PersonSet
     @Override
     public void add(Person p)
     {
+        //sort the ArrayList
+        sort(people);
+        //refer to parent class
         super.add(p);
-
     }
 
     //method that sorts the people in alphabetic order
-    private void sort()
+    private void sort(ArrayList<Person> people)
     {
-        //ArrayList.sort();
+        Collections.sort(people);
     }
 
     //toString for the ordered set

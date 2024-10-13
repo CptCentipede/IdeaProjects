@@ -5,8 +5,11 @@ public class PersonImperialSet extends PersonSet
     @Override
     public void add(Person p)
     {
+        //convert the height and weight into imperial units
         p.setHeight(convertHeight(p.getHeight()));
         p.setWeight(convertWeight(p.getWeight()));
+
+        //refer to parent class
         super.add(p);
     }
 
@@ -18,7 +21,7 @@ public class PersonImperialSet extends PersonSet
     private double convertWeight(double weight)
     {return weight*2.2;}
 
-    //toString for the imperial set
+    //toString for the imperial set that uses toString from parent class
     @Override
     public String toString()
     {

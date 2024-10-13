@@ -9,6 +9,8 @@ Resources: I used the following to get the filename from the command line argume
            https://stackoverflow.com/questions/16802147/java-i-want-to-read-a-file-name-from-command-line-then-use-a-bufferedreader-to
            I used the following to understand the compareTo method where the class implements Comparable
            https://java-programming.mooc.fi/part-10/2-interface-comparable
+           I used the following to figure out how to return a string with two decimals if the decimals after height or weight were not zero
+           https://stackoverflow.com/questions/14799943/how-to-check-if-number-is-a-decimal
 */
 
 /*

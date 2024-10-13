@@ -44,7 +44,7 @@ public class Person implements Comparable<Person>
     @Override
     public int compareTo(Person p)
     {
-        return this.name.compareTo(p.name);   //PLACEHOLDER
+        return this.name.compareTo(p.name);
     }
 
     //getters
