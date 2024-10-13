@@ -1,3 +1,5 @@
+//class that adds people to an ArrayList without duplicates
+
 import java.util.ArrayList;
 
 public class PersonSet implements PersonList {
@@ -6,8 +8,11 @@ public class PersonSet implements PersonList {
 
     //method that adds the person to the array list if they are not already in there
     @Override
-    public void add(Person p) {
-        if (!people.contains(p)) {
+    public void add(Person p)
+    {
+        //add the person if the ArrayList does not already contain them
+        if (!people.contains(p))
+        {
             people.add(p);
         }
     }

@@ -7,16 +7,12 @@ public class Person implements Comparable<Person>
     private double weight;
 
     //constructor
-    public Person()
-    {}
-
-    //constructor that takes parameters for all data for testing purposes
     public Person(String name, double height, double weight)
     {
         this.name = name;
         this.height = height;
         this.weight = weight;
-    }   //end constructor with three inputs
+    }   //end constructor
 
     //compare the contents of two objects for PersonSet
     @Override
@@ -40,12 +36,12 @@ public class Person implements Comparable<Person>
                 && Double.compare(weight, p.weight)==0;
     }   //end of equals method
 
-    //
+    //compares names to be sorted
     @Override
     public int compareTo(Person p)
     {
         return this.name.compareTo(p.name);
-    }
+    }   //end compareTo
 
     //getters
     public String getName()
@@ -74,11 +70,10 @@ public class Person implements Comparable<Person>
         if(height % 1 != 0 || weight % 1 != 0)
         {
             return String.format("%-10s %10.2f %10.2f", name, height, weight);
-        }
+        }   //end of if
         else
         {
             return String.format("%-10s %10.0f %10.0f", name, height, weight);
-        }
+        }   //end of else
     }   //end of toString
-
 }   //end of class
