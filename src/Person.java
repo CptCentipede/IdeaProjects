@@ -40,6 +40,12 @@ public class Person
                 && Double.compare(weight, p.weight)==0;
     }   //end of equals method
 
+    //
+    public int compareTo(Person p)
+    {
+        return 0;   //PLACEHOLDER
+    }
+
     //getters
     public String getName()
     {return this.name;}
