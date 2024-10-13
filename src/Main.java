@@ -35,7 +35,7 @@ public class Main
     public static void main(String[] args)
     {
         //instantiate imperial and ordered classes
-        PersonList imperialList = new PersonImperialSet();
+        PersonList imperialSet = new PersonImperialSet();
         PersonList orderedSet = new PersonOrderedSet();
 
         //use try catch for file input
@@ -68,9 +68,8 @@ public class Main
                 Person orderedPerson = new Person(name, height, weight);
 
                 //add the person to the imperial and ordered classes
-                imperialList.add(imperialPerson);
+                imperialSet.add(imperialPerson);
                 orderedSet.add(orderedPerson);
-
             }   //end of while loop
 
             //close the scanner that reads data from file
@@ -84,9 +83,15 @@ public class Main
         //write a file for output using try catch
 		try
 		{
-			FileWriter fileWriterOrder = new FileWriter("outputfile.txt");
-			fileWriterOrder.write("testing");
-			fileWriterOrder.close();
+            //write a file for the PersonImperialSet
+			FileWriter writeImperial = new FileWriter("outputfile.txt");
+            writeImperial.write(imperialSet.toString());
+            writeImperial.close();
+
+            //write a file for the PersonOrderedSet
+            FileWriter writeOrdered = new FileWriter("outputfile.txt");
+            writeOrdered.write(orderedSet.toString());
+            writeOrdered.close();
 		}   //end of try
 		catch(IOException e)
 		{
