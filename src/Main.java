@@ -72,6 +72,10 @@ public class Main
                 orderedSet.add(orderedPerson);
             }   //end of while loop
 
+            //print imperial and ordered sets to command line
+            System.out.println(imperialSet.toString()+"\n");
+            System.out.println(orderedSet.toString());
+
             //close the scanner that reads data from file
             fileReader.close();
         }   //end of try
