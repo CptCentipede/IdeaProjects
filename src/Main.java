@@ -34,13 +34,9 @@ public class Main
 {
     public static void main(String[] args)
     {
-        //instantiate objects of type Person and PersonSet for testing
+        //instantiate object
         Person personObject = new Person("Billy", 29, 123);
         PersonList personSetObject = new PersonSet();
-
-        //test for personObject
-        System.out.println("This is for testing purposes\n"+personObject.toString()+"\n");
-        System.out.println("This is a list of all of the people in hr.txt");
 
         //use try catch for file input
         try {

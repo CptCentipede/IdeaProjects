@@ -1,5 +1,5 @@
 //this class will store the HR information
-public class Person
+public class Person implements Comparable
 {
     //instance variables
     private String name;
@@ -16,7 +16,7 @@ public class Person
         this.name = name;
         this.height = height;
         this.weight = weight;
-    }   //end cosntructor with three inputs
+    }   //end constructor with three inputs
 
     //compare the contents of two objects for PersonSet
     @Override
@@ -41,7 +41,8 @@ public class Person
     }   //end of equals method
 
     //
-    public int compareTo(Person p)
+    @Override
+    public int compareTo(Object o)
     {
         return 0;   //PLACEHOLDER
     }
@@ -72,4 +73,5 @@ public class Person
     {
         return String.format("%-10s %10.0f %10.0f", name, height, weight);
     }   //end of toString
+
 }   //end of class
