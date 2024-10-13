@@ -84,12 +84,12 @@ public class Main
 		try
 		{
             //write a file for the PersonImperialSet
-			FileWriter writeImperial = new FileWriter("outputfile.txt");
+			FileWriter writeImperial = new FileWriter("hr_imperial_set_output.txt");
             writeImperial.write(imperialSet.toString());
             writeImperial.close();
 
             //write a file for the PersonOrderedSet
-            FileWriter writeOrdered = new FileWriter("outputfile.txt");
+            FileWriter writeOrdered = new FileWriter("outputhr_ordered_set_output.txt");
             writeOrdered.write(orderedSet.toString());
             writeOrdered.close();
 		}   //end of try
