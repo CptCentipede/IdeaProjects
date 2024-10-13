@@ -34,6 +34,12 @@ public class PersonSet implements PersonList
         }
 
         //return the header and the contents of the arraylist
-        return String.format("%-10s %10s %10s", "Name", "Height (cm)", "Weight (kg)\n"+listToString);
+        return String.format(listToString);
+    }
+
+    @Override
+    public int compare(Object o1, Object o2)
+    {
+        return 0;
     }
 }

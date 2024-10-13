@@ -32,6 +32,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main
 {
@@ -75,6 +77,7 @@ public class Main
                 orderedSet.add(orderedPerson);
             }   //end of while loop
 
+            //Collections.sort(imperialSet);
             //print imperial and ordered sets to command line
             System.out.println(imperialSet.toString()+"\n");
             System.out.println(orderedSet.toString());
