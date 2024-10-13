@@ -34,9 +34,9 @@ public class Main
 {
     public static void main(String[] args)
     {
-        //instantiate object
-        Person personObject = new Person("Billy", 29, 123);
-        PersonList personSetObject = new PersonSet();
+        //instantiate imperial and ordered classes
+        PersonList imperialList = new PersonImperialSet();
+        PersonList orderedSet = new PersonOrderedSet();
 
         //use try catch for file input
         try {
@@ -62,15 +62,16 @@ public class Main
                 double height = fileReader.nextDouble();
                 double weight = fileReader.nextDouble();
 
-                //create a new data of Person type then print and add it to the arrayList
-                Person newPerson = new Person(name, height, weight);
-                System.out.println(newPerson.toString());
-                personSetObject.add(newPerson);
+
+                //create an object of type Person for the imperial and ordered set
+                Person imperialPerson = new Person(name, height, weight);
+                Person orderedPerson = new Person(name, height, weight);
+
+                //add the person to the imperial and ordered classes
+                imperialList.add(imperialPerson);
+                orderedSet.add(orderedPerson);
 
             }   //end of while loop
-
-            //print out list without duplicates
-            System.out.println("\n"+personSetObject.toString());
 
             //close the scanner that reads data from file
             fileReader.close();
