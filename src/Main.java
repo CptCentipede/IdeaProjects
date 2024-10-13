@@ -6,6 +6,9 @@ Purpose: This program will take in a file name from the command line to take in 
          in order, without duplicates, to be written to an output for both the measurements given and converted into
          the imperial measuring system
 Resources: I used the following to get the filename from the command line argument
+           https://stackoverflow.com/questions/16802147/java-i-want-to-read-a-file-name-from-command-line-then-use-a-bufferedreader-to
+           I used the following to understand the compareTo method where the class implements Comparable
+           https://java-programming.mooc.fi/part-10/2-interface-comparable
 */
 
 /*

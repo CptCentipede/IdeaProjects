@@ -1,5 +1,5 @@
 //this class will store the HR information
-public class Person implements Comparable
+public class Person implements Comparable<Person>
 {
     //instance variables
     private String name;
@@ -42,9 +42,9 @@ public class Person implements Comparable
 
     //
     @Override
-    public int compareTo(Object o)
+    public int compareTo(Person p)
     {
-        return 0;   //PLACEHOLDER
+        return this.name.compareTo(p.name);   //PLACEHOLDER
     }
 
     //getters

@@ -11,12 +11,12 @@ public class PersonImperialSet extends PersonSet
     //converts the height from cm to in
     private double convertHeight(double height)
     {
-        return 0;       //PLACEHOLDER
+        return height;
     }
 
     //converts the weight from kg to lbs
     private double convertWeight(double weight)
     {
-        return 0;   //PLACEHOLDER
+        return weight;
     }
 }
