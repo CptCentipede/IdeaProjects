@@ -71,7 +71,14 @@ public class Person implements Comparable<Person>
     @Override
     public String toString()
     {
-        return String.format("%-10s %10.0f %10.0f", name, height, weight);
+        if(height % 1 != 0 || weight % 1 != 0)
+        {
+            return String.format("%-10s %10.2f %10.2f", name, height, weight);
+        }
+        else
+        {
+            return String.format("%-10s %10.0f %10.0f", name, height, weight);
+        }
     }   //end of toString
 
 }   //end of class

@@ -5,9 +5,9 @@ public class PersonImperialSet extends PersonSet
     @Override
     public void add(Person p)
     {
+        p.setHeight(convertHeight(p.getHeight()));
+        p.setWeight(convertWeight(p.getWeight()));
         super.add(p);
-        convertHeight(p.getHeight());
-        convertWeight(p.getWeight());
     }
 
     //converts the height from cm to in
