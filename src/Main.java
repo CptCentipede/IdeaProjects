@@ -5,8 +5,6 @@ Class: CSCI 2251
 Purpose: Doubly-linked list that sorts itself to be used in place of an arraylist
 */
 
-
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +15,7 @@ public class Main {
     public static void main(String[] args)
     {
         //create arrayList that will save the data from hurricane objects
-        ArrayList<HurricaneRowData> hurricaneData = new ArrayList<HurricaneRowData>();
+        DoublyLinkedSortedList data = new DoublyLinkedSortedList();
 
         //use try and catch to see if file exists
         try
@@ -66,7 +64,12 @@ public class Main {
         {
             //create a file writer and write to an output file
             FileWriter writeFile = new FileWriter("output.txt");
-            int max = findAceMaxYear(hurricaneData);
+            DoublyLinkedSortedList link = data.getFirst();
+            HurricaneRowData dat = link.getValue();
+            int max_year = dat.getYear();
+            System.out.println("Year of max ace: "+max_year);
+            System.out.println("All data in order of Ace:");
+            System.out.println(data);
             String strMax = Integer.toString(max);
             writeFile.write(strMax);
 
