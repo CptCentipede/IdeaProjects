@@ -1,25 +1,36 @@
 public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
 {
+    //instance variables
+    private HurricaneRowData value = null;
+    private DoublyLinkedSortedList next = null;
+    private DoublyLinkedSortedList previous = null;
+
     //Get the value of the current DoublyLinkedSortedList
     public HurricaneRowData getValue()
     {
-        return ;
+        return value;
     }
 
     //Return true if next is not null
-    public boolean hasNext()
-    {
-        return true;    //PLACEHOLDER
-    }
+    public boolean hasNext() {
+        if (next == null) {
+            return false;    //PLACEHOLDER
+        }   //end if
+
+        return true;
+    }   //end hasNext
 
     //Set next to be the given DoublyLinkedSortedList
     public void setNext(DoublyLinkedSortedList next)
-    {}
+    {
+        this.next = next;
+        next.previous = this;
+    }
 
     //Return a reference to the next DoublyLinkedSortedList
     public DoublyLinkedSortedList getNext()
     {
-        return ;
+        return next;
     }
 
     //Return true if previous is not null
@@ -36,7 +47,7 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     //Return a reference to the previous DoublyLinkedSortedList
     public DoublyLinkedSortedList getPrevious()
     {
-        return ;
+        return previous;
     }
 
     //Return a reference to the first DoublyLinkedSortedList element in the list
