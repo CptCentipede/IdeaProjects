@@ -27,6 +27,9 @@ public class Main {
             //Strip first line
             fileInput.nextLine();
 
+            //create a private variable that keeps track of how long the list of data is
+            int sizeOfLinkList = 0;
+
             //while the file has more data keep reading the data
             while(fileInput.hasNext())
             {
@@ -45,11 +48,12 @@ public class Main {
                 //create a new data of HurricaneRowData type then add it to the arrayList
                 HurricaneRowData dataForRow = new HurricaneRowData(valueAsInt[0], valueAsInt[1], valueAsInt[2], valueAsInt[3], valueAsInt[4]);
                 data.insert(dataForRow);
+                sizeOfLinkList++;
 
             }//while loop
 
             //print out the max value
-            System.out.println(findAceMaxYear(data));
+            System.out.println(findAceMaxYear(data, sizeOfLinkList));
 
             //close the scanner that reads data from file
             fileInput.close();
@@ -84,14 +88,14 @@ public class Main {
     }
 
     //method that finds the highest ACE index
-    private static int findAceMaxYear(DoublyLinkedSortedList data)
+    private static int findAceMaxYear(DoublyLinkedSortedList data, int size)
     {
         //create data of type HurricaneRowData and an integer to store the value the max is at
         HurricaneRowData max = data.getValue(0);
         int maxValue = 0;
 
         //loop through the second column of the object to find the largest value then set that to the max value
-        for(int i=0; i<data.setNext(); i++)
+        for(int i=0; i<size; i++)
         {
             if(data.getValue(i).getAce() > max.getAce())
             {
