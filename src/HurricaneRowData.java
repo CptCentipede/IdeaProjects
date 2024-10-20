@@ -17,27 +17,27 @@ public class HurricaneRowData {
     }
 
     //Getters
-    public int getyear()
+    public int getYear()
     {
         return this.year;
     }
 
-    public int getace()
+    public int getAce()
     {
         return this.ace;
     }
 
-    public int getstormCount()
+    public int getStormCount()
     {
         return this.stormCount;
     }
 
-    public int gethurrCount()
+    public int getHurrCount()
     {
         return this.hurrCount;
     }
 
-    public int getmajHurrCount()
+    public int getMajHurrCount()
     {
         return this.majHurrCount;
     }

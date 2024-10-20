@@ -44,12 +44,12 @@ public class Main {
 
                 //create a new data of HurricaneRowData type then add it to the arrayList
                 HurricaneRowData dataForRow = new HurricaneRowData(valueAsInt[0], valueAsInt[1], valueAsInt[2], valueAsInt[3], valueAsInt[4]);
-                hurricaneData.add(dataForRow);
+                data.insert(dataForRow);
 
             }//while loop
 
             //print out the max value
-            System.out.println(findAceMaxYear(hurricaneData));
+            System.out.println(findAceMaxYear(data));
 
             //close the scanner that reads data from file
             fileInput.close();
@@ -70,7 +70,7 @@ public class Main {
             System.out.println("Year of max ace: "+max_year);
             System.out.println("All data in order of Ace:");
             System.out.println(data);
-            String strMax = Integer.toString(max);
+            String strMax = Integer.toString(data);
             writeFile.write(strMax);
 
             //close the file writer
@@ -84,19 +84,19 @@ public class Main {
     }
 
     //method that finds the highest ACE index
-    private static int findAceMaxYear(ArrayList<HurricaneRowData> hurricaneData)
+    private static int findAceMaxYear(DoublyLinkedSortedList data)
     {
         //create data of type HurricaneRowData and an integer to store the value the max is at
-        HurricaneRowData max = hurricaneData.get(0);
+        HurricaneRowData max = data.getValue(0);
         int maxValue = 0;
 
         //loop through the second column of the object to find the largest value then set that to the max value
-        for(int i=0; i<hurricaneData.size(); i++)
+        for(int i=0; i<data.setNext(); i++)
         {
-            if(hurricaneData.get(i).getace() > max.getace())
+            if(data.getValue(i).getAce() > max.getAce())
             {
-                max = hurricaneData.get(i);
-                maxValue = Integer.valueOf(max.getyear());
+                max = data.getValue(i);
+                maxValue = Integer.valueOf(max.getYear());
             }   //end if
         }   //end for
 
