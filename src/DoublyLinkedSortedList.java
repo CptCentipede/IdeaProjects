@@ -16,8 +16,8 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     }
 
     //Get the value of the current DoublyLinkedSortedList
-    public HurricaneRowData getValue(DoublyLinkedSortedList data)
-    {
+    @Override
+    public HurricaneRowData getValue(DoublyLinkedSortedList data) {
         return value;
     }
 
@@ -104,7 +104,7 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     @Override
     public HurricaneRowData insert(HurricaneRowData newValue)
     {
-        if (newValue == null)
+       /* if (newValue == null)
         {
             return newValue;
         }
@@ -160,7 +160,8 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
             currentNode = next;
         }
 
-        return sorted;
+        return sorted;*/
+        return newValue;    //PLACEHIOLDER
     }
 
     @Override
@@ -170,7 +171,7 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
         return " ";  //PLACEHOLDER
     }
 
-    // Post: Returns true if this linked list contains the given value
+    /*// Post: Returns true if this linked list contains the given value
     public boolean contains(HurricaneRowData value)
     {
         DoublyLinkedSortedList current = this.getFirst();
@@ -186,7 +187,7 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
         }
 
         return false;
-    }
+    }*/
 
     // Pre: This linked list contains the given value
     // Post: Returns the LinkedList element whose value matches the given value

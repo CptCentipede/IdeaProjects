@@ -1,4 +1,5 @@
 public class Node {
-    int data;
-
+    private HurricaneRowData value = null;
+    private DoublyLinkedSortedList next = null;
+    private DoublyLinkedSortedList previous = null;
 }
