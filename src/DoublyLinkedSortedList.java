@@ -102,9 +102,65 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
 
     //Insert a new DoublyLinkedSortedList element that has the given newValue in order in the list.
     @Override
-    public void insert(HurricaneRowData newValue)
+    public HurricaneRowData insert(HurricaneRowData newValue)
     {
+        if (newValue == null)
+        {
+            return newValue;
+        }
 
+        // Sorted part of the list
+        HurricaneRowData sorted = null;
+
+        // Current node to be inserted
+        HurricaneRowData currentNode = newValue;
+
+        // Traverse the list to sort each element
+        while (currentNode != null) {
+
+            // Store the next node to process
+            HurricaneRowData next = currentNode.next;
+
+            // Insert `curr` into the sorted part
+            if (sorted == null ||
+                    sorted.value >= currentNode.value) {
+                currentNode.next = sorted;
+
+                // If sorted is not empty, set its `prev`
+                if (sorted != null) sorted.previous = currentNode;
+
+                // Update sorted to the new head
+                sorted = currentNode;
+                sorted.previous = null;
+
+            }
+            else {
+
+                // Pointer to traverse the sorted part
+                HurricaneRowData currentSorted = sorted;
+
+                // Find the correct position to insert
+                while (currentSorted.next != null &&
+                        currentSorted.next.value < currentNode.value) {
+                    currentSorted = currentSorted.next;
+                }
+
+                // Insert `curr` after `currentSorted`
+                currentNode.next = currentSorted.next;
+
+                // Set `prev` if `curr` is not inserted
+                // at the end
+                if (currentSorted.next != null)
+                    currentSorted.next.prev = currentNode;
+
+                // Set `next` of `currentSorted` to `curr`
+                currentSorted.next = currentNode;
+                currentNode.previous = currentSorted;
+            }
+            currentNode = next;
+        }
+
+        return sorted;
     }
 
     //Return the entire list as a multi-line String
