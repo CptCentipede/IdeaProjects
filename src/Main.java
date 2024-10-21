@@ -79,7 +79,7 @@ public class Main {
     {
         //create data of type HurricaneRowData and an integer to store the value the max is at
         DoublyLinkedSortedList link = data.getFirst();
-        HurricaneRowData dat = link.getValue(data);
+        HurricaneRowData dat = link.getValue();
         int max_year = dat.getYear();
         System.out.println("Year of max ace: "+max_year);
         System.out.println("All data in order of Ace:");
