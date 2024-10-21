@@ -1,13 +1,15 @@
-public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
+public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSortedListInterface
 {
     //instance variables
-    private HurricaneRowData value = null;
+    private HurricaneRowData value;
     private DoublyLinkedSortedList next = null;
     private DoublyLinkedSortedList previous = null;
 
+    private Node<HurricanRowData> start;
+
     public DoublyLinkedSortedList()
     {
-
+        start = null;
     }
 
     public DoublyLinkedSortedList(HurricaneRowData v)
