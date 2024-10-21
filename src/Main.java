@@ -27,9 +27,6 @@ public class Main {
             //Strip first line
             fileInput.nextLine();
 
-            //create a private variable that keeps track of how long the list of data is
-            int sizeOfLinkList = 0;
-
             //while the file has more data keep reading the data
             while(fileInput.hasNext())
             {
@@ -48,12 +45,7 @@ public class Main {
                 //create a new data of HurricaneRowData type then add it to the linkedList
                 HurricaneRowData dataForRow = new HurricaneRowData(valueAsInt[0], valueAsInt[1], valueAsInt[2], valueAsInt[3], valueAsInt[4]);
                 data.insert(dataForRow);
-                sizeOfLinkList++;
-
             }//while loop
-
-            //print out the max value
-            System.out.println(findAceMaxYear(data, sizeOfLinkList));
 
             //close the scanner that reads data from file
             fileInput.close();
@@ -68,13 +60,8 @@ public class Main {
         {
             //create a file writer and write to an output file
             FileWriter writeFile = new FileWriter("output.txt");
-            DoublyLinkedSortedList link = data.getFirst();
-            HurricaneRowData dat = link.getValue(data);
-            int max_year = dat.getYear();
-            System.out.println("Year of max ace: "+max_year);
-            System.out.println("All data in order of Ace:");
-            System.out.println(data);
-            String strMax = data.toString();
+            int max = findAceMaxYear(data);
+            String strMax = Integer.toString(max);
             writeFile.write(strMax);
 
             //close the file writer
@@ -88,7 +75,7 @@ public class Main {
     }
 
     //method that finds the highest ACE index
-    private static int findAceMaxYear(DoublyLinkedSortedList data, int size)
+    private static int findAceMaxYear(DoublyLinkedSortedList data)
     {
         //create data of type HurricaneRowData and an integer to store the value the max is at
         DoublyLinkedSortedList link = data.getFirst();
