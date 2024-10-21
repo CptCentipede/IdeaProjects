@@ -91,20 +91,13 @@ public class Main {
     private static int findAceMaxYear(DoublyLinkedSortedList data, int size)
     {
         //create data of type HurricaneRowData and an integer to store the value the max is at
-        HurricaneRowData max = data.getValue();
-        int maxValue = 0;
+        DoublyLinkedSortedList link = data.getFirst();
+        HurricaneRowData dat = link.getValue(data);
+        int max_year = dat.getYear();
+        System.out.println("Year of max ace: "+max_year);
+        System.out.println("All data in order of Ace:");
+        System.out.println(data);
 
-        //loop through the second column of the object to find the largest value then set that to the max value
-        for(int i=0; i<size; i++)
-        {
-            if(data.getValue(data).getAce() > max.getAce())
-            {
-                max = data.getValue(data);
-                maxValue = Integer.valueOf(max.getYear());
-            }   //end if
-        }   //end for
-
-        //return the maximum value
-        return maxValue;
+        return max_year;
     }   //end findAceYearMax
 }   //end class
