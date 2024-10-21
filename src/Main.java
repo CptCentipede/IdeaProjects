@@ -74,7 +74,7 @@ public class Main {
             System.out.println("Year of max ace: "+max_year);
             System.out.println("All data in order of Ace:");
             System.out.println(data);
-            String strMax = Integer.toString(data);
+            String strMax = data.toString();
             writeFile.write(strMax);
 
             //close the file writer
