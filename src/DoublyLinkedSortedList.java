@@ -5,16 +5,28 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     private DoublyLinkedSortedList next = null;
     private DoublyLinkedSortedList previous = null;
 
+    public DoublyLinkedSortedList()
+    {
+
+    }
+
+    public DoublyLinkedSortedList(HurricaneRowData v)
+    {
+        this.value = v;
+    }
+
     //Get the value of the current DoublyLinkedSortedList
-    public HurricaneRowData getValue()
+    public HurricaneRowData getValue(DoublyLinkedSortedList data)
     {
         return value;
     }
 
     //Return true if next is not null
-    public boolean hasNext() {
-        if (next == null) {
-            return false;    //PLACEHOLDER
+    public boolean hasNext()
+    {
+        if (next == null)
+        {
+            return false;
         }   //end if
 
         return true;
@@ -36,12 +48,19 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     //Return true if previous is not null
     public boolean hasPrevious()
     {
-        return true;    //PLACEHOLDER
+        if(previous == null)
+        {
+            return true;    //PLACEHOLDER
+        }
+
+        return false;
     }
 
     //Set previous to be the given DoublyLinkedSortedList
     public void setPrevious(DoublyLinkedSortedList previous)
     {
+        this.previous = previous;
+        previous.next = this;
     }
 
     //Return a reference to the previous DoublyLinkedSortedList
@@ -53,41 +72,69 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     //Return a reference to the first DoublyLinkedSortedList element in the list
     public DoublyLinkedSortedList getFirst()
     {
-        return ;
+        if (previous == null)
+        {
+            return this;
+        }
+        else
+        {
+            return previous.getFirst();
+        }
     }
 
     //Return a reference to the last DoublyLinkedSortedList element in the list
-    public DoublyLinkedSortedList getLast()
-    {
-        return ;
+    @Override
+    public DoublyLinkedSortedList getLast() {
+        if(next == null) {
+            return this;
+        }
+        else{
+            return next.getLast();
+        }
     }
 
     //Remove the DoublyLinkedSortedList element that has toRemove as its value
-    public DoublyLinkedSortedList remove(HurricaneRowData toRemove)
-    {
-        return ;
+    @Override
+    public DoublyLinkedSortedList remove(HurricaneRowData toRemove) {
+        previous.setNext(next);
+        return this;
     }
 
     //Insert a new DoublyLinkedSortedList element that has the given newValue in order in the list.
+    @Override
     public void insert(HurricaneRowData newValue)
     {
+
     }
 
     //Return the entire list as a multi-line String
     public String toString()
     {
-        return "";  //PLACEHOLDER
+        return " ";  //PLACEHOLDER
     }
 
     // Post: Returns true if this linked list contains the given value
     public boolean contains(HurricaneRowData value)
     {
-        return true;    //PLACEHOLDER
+        DoublyLinkedSortedList current = this.getFirst();
+
+        if(current.getValue() == value)
+            return true;
+
+        while(current.hasNext())
+        {
+            current = current.getNext();
+            if(current.getValue() == value)
+                return true;
+        }
+
+        return false;
     }
 
     // Pre: This linked list contains the given value
     // Post: Returns the LinkedList element whose value matches the given value
     public DoublyLinkedSortedList getByValue(HurricaneRowData value)
     {
+        return null;    //PLACEHOLDER
     }
 }

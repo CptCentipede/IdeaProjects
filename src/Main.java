@@ -14,7 +14,7 @@ import java.io.FileWriter;
 public class Main {
     public static void main(String[] args)
     {
-        //create arrayList that will save the data from hurricane objects
+        //create linkedList that will save the data from hurricane objects
         DoublyLinkedSortedList data = new DoublyLinkedSortedList();
 
         //use try and catch to see if file exists
@@ -45,7 +45,7 @@ public class Main {
                     valueAsInt[i] = stringToInt;
                 }
 
-                //create a new data of HurricaneRowData type then add it to the arrayList
+                //create a new data of HurricaneRowData type then add it to the linkedList
                 HurricaneRowData dataForRow = new HurricaneRowData(valueAsInt[0], valueAsInt[1], valueAsInt[2], valueAsInt[3], valueAsInt[4]);
                 data.insert(dataForRow);
                 sizeOfLinkList++;
@@ -69,7 +69,7 @@ public class Main {
             //create a file writer and write to an output file
             FileWriter writeFile = new FileWriter("output.txt");
             DoublyLinkedSortedList link = data.getFirst();
-            HurricaneRowData dat = link.getValue();
+            HurricaneRowData dat = link.getValue(data);
             int max_year = dat.getYear();
             System.out.println("Year of max ace: "+max_year);
             System.out.println("All data in order of Ace:");
@@ -91,15 +91,15 @@ public class Main {
     private static int findAceMaxYear(DoublyLinkedSortedList data, int size)
     {
         //create data of type HurricaneRowData and an integer to store the value the max is at
-        HurricaneRowData max = data.getValue(0);
+        HurricaneRowData max = data.getValue();
         int maxValue = 0;
 
         //loop through the second column of the object to find the largest value then set that to the max value
         for(int i=0; i<size; i++)
         {
-            if(data.getValue(i).getAce() > max.getAce())
+            if(data.getValue(data).getAce() > max.getAce())
             {
-                max = data.getValue(i);
+                max = data.getValue(data);
                 maxValue = Integer.valueOf(max.getYear());
             }   //end if
         }   //end for

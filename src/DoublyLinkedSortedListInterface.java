@@ -3,7 +3,7 @@
 public interface DoublyLinkedSortedListInterface
 {
     //Get the value of the current DoublyLinkedSortedList
-    public HurricaneRowData getValue();
+    public HurricaneRowData getValue(DoublyLinkedSortedList data);
 
     //Return true if next is not null
     public boolean hasNext();
