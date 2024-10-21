@@ -104,7 +104,7 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     @Override
     public HurricaneRowData insert(HurricaneRowData newValue)
     {
-       /* if (newValue == null)
+        if (newValue == null)
         {
             return newValue;
         }
@@ -160,8 +160,7 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
             currentNode = next;
         }
 
-        return sorted;*/
-        return newValue;    //PLACEHIOLDER
+        return sorted;
     }
 
     @Override
