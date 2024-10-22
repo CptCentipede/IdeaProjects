@@ -1,17 +1,13 @@
-public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSortedListInterface
+public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
 {
     //instance variables
     private HurricaneRowData value;
     private DoublyLinkedSortedList next = null;
     private DoublyLinkedSortedList previous = null;
 
-    //create an instance of the Nodes
-    private Node<HurricanRowData> start;
-
     //constructors
     public DoublyLinkedSortedList()
     {
-        start = null;
     }
 
     public DoublyLinkedSortedList(HurricaneRowData v)
@@ -57,7 +53,7 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
         //if the previous is null return true
         if(previous == null)
         {
-            return true;    //PLACEHOLDER
+            return true;
         }
 
         //otherwise return false
@@ -110,28 +106,26 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
         return this;
     }
 
-
     //Insert a new DoublyLinkedSortedList element that has the given newValue in order in the list.
     @Override
-    public HurricaneRowData insert(HurricaneRowData newValue)
+    public void insert(HurricaneRowData data)
     {
-        /*
-        if (newValue == null)
+        //if goes right here put it right here otherwise put it somewhere else
+        //could add method to get the ace value to simplify
+        //new data either goes here, previous, or next
+        //if there is no previous or no next where it should go it should be recursive to put that as the beginning or end
+
+        //if the data is null then set it equal to the value
+        if (data == null)
         {
-            return newValue;
+            data = value;
         }
 
-        // Sorted part of the list
-        HurricaneRowData sorted = null;
+        //
+        while (data != null) {
 
-        // Current node to be inserted
-        HurricaneRowData currentNode = newValue;
-
-        // Traverse the list to sort each element
-        while (currentNode != null) {
-
-            // Store the next node to process
-            HurricaneRowData next = currentNode.next;
+            //store the value of the ACE value into an integer
+            int currAceValue = data.getAce();
 
             // Insert `curr` into the sorted part
             if (sorted == null ||
@@ -173,16 +167,14 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
         }
 
         return sorted;
-
-         */
-        return newValue;    //PLACEHOLDER
     }
 
     @Override
     //Return the entire list as a multi-line String
     public String toString()
     {
-        return " ";  //PLACEHOLDER
+        return String.format("%10d %10d %10d %10d %10d", value.getYear(), value.getAce(), value.getStormCount(),
+                value.getHurrCount(), value.getMajHurrCount());
     }
 
     // Post: Returns true if this linked list contains the given value

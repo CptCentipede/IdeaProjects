@@ -33,7 +33,7 @@ public interface DoublyLinkedSortedListInterface
     public DoublyLinkedSortedList remove(HurricaneRowData toRemove);
 
     //Insert a new DoublyLinkedSortedList element that has the given newValue in order in the list.
-    public HurricaneRowData insert(HurricaneRowData newValue);
+    public void insert(HurricaneRowData data);
 
     //Return the entire list as a multi-line String
     public String toString();
