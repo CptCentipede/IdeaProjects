@@ -3,6 +3,8 @@ Name: Miles Aether
 Date: 10/20/2024
 Class: CSCI 2251
 Purpose: Doubly-linked list that sorts itself to be used in place of an arraylist
+Resources: I used the following for the insert method, but left the code as is because changing it didn't make it work
+           https://www.geeksforgeeks.org/insertion-sort-doubly-linked-list/
 */
 
 import java.util.Scanner;
@@ -49,11 +51,11 @@ public class Main {
 
             //close the scanner that reads data from file
             fileInput.close();
-        }
+        }   //end try
         catch(FileNotFoundException e)
         {
             System.out.println("sorry your file cannot be found");
-        }
+        }   //end catch
 
         //write the file output for the year with the max ACE
         try
@@ -66,11 +68,11 @@ public class Main {
 
             //close the file writer
             writeFile.close();
-        }
+        }   //end try
         catch(IOException e)
         {
             System.out.println(e);
-        }
+        }   //end catch
 
     }
 
@@ -80,11 +82,16 @@ public class Main {
         //create data of type HurricaneRowData and an integer to store the value the max is at
         DoublyLinkedSortedList link = data.getFirst();
         HurricaneRowData dat = link.getValue();
+
+        //get the year for the value
         int max_year = dat.getYear();
+
+        //print it out
         System.out.println("Year of max ace: "+max_year);
         System.out.println("All data in order of Ace:");
         System.out.println(data);
 
+        //return the max ace year
         return max_year;
     }   //end findAceYearMax
 }   //end class

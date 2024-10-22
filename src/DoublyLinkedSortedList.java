@@ -5,8 +5,10 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
     private DoublyLinkedSortedList next = null;
     private DoublyLinkedSortedList previous = null;
 
+    //create an instance of the Nodes
     private Node<HurricanRowData> start;
 
+    //constructors
     public DoublyLinkedSortedList()
     {
         start = null;
@@ -26,11 +28,13 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
     //Return true if next is not null
     public boolean hasNext()
     {
+        //if the next one is null return false
         if (next == null)
         {
             return false;
         }   //end if
 
+        //otherwise return true
         return true;
     }   //end hasNext
 
@@ -50,11 +54,13 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
     //Return true if previous is not null
     public boolean hasPrevious()
     {
+        //if the previous is null return true
         if(previous == null)
         {
             return true;    //PLACEHOLDER
         }
 
+        //otherwise return false
         return false;
     }
 
@@ -74,10 +80,12 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
     //Return a reference to the first DoublyLinkedSortedList element in the list
     public DoublyLinkedSortedList getFirst()
     {
+        //if the previous is null return this
         if (previous == null)
         {
             return this;
         }
+        //otherwise return the other previous value
         else
         {
             return previous.getFirst();
@@ -102,10 +110,12 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
         return this;
     }
 
+
     //Insert a new DoublyLinkedSortedList element that has the given newValue in order in the list.
     @Override
     public HurricaneRowData insert(HurricaneRowData newValue)
     {
+        /*
         if (newValue == null)
         {
             return newValue;
@@ -163,6 +173,9 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
         }
 
         return sorted;
+
+         */
+        return newValue;    //PLACEHOLDER
     }
 
     @Override
@@ -175,11 +188,14 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
     // Post: Returns true if this linked list contains the given value
     public boolean contains(HurricaneRowData value)
     {
+        //get the first value from the list
         DoublyLinkedSortedList current = this.getFirst();
 
+        //if the value of that object is equal to the value you're looking for return true
         if(current.getValue() == value)
             return true;
 
+        //while the current object has more data and is equal to the value return true
         while(current.hasNext())
         {
             current = current.getNext();
@@ -187,6 +203,7 @@ public class DoublyLinkedSortedList<HurricanRowData> implements DoublyLinkedSort
                 return true;
         }
 
+        //otherwise return false
         return false;
     }
 
