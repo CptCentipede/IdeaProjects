@@ -24,14 +24,14 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
     //Return true if next is not null
     public boolean hasNext()
     {
-        //if the next one is null return false
+        //if the next one is null return true
         if (next == null)
         {
-            return false;
+            return true;
         }   //end if
 
-        //otherwise return true
-        return true;
+        //otherwise return false
+        return false;
     }   //end hasNext
 
     //Set next to be the given DoublyLinkedSortedList
@@ -106,68 +106,46 @@ public class DoublyLinkedSortedList implements DoublyLinkedSortedListInterface
         return this;
     }
 
+    public int getValueAce(HurricaneRowData data)
+    {
+        return data.getAce();
+    }
+
     //Insert a new DoublyLinkedSortedList element that has the given newValue in order in the list.
     @Override
     public void insert(HurricaneRowData data)
     {
-        //if goes right here put it right here otherwise put it somewhere else
-        //could add method to get the ace value to simplify
-        //new data either goes here, previous, or next
-        //if there is no previous or no next where it should go it should be recursive to put that as the beginning or end
-
-        //if the data is null then set it equal to the value
-        if (data == null)
+        //if the value is null then set it equal to the value and return
+        if (value == null)
         {
-            data = value;
-        }
+            value = data;
+            return;
+        }   //end value is null
 
-        //
-        while (data != null) {
+        //else the value is not null then figure out where the new piece of data goes
+        else {
+            //create a variable for the current value that will be the data from HurricaneRowData
+            DoublyLinkedSortedList currValue = new DoublyLinkedSortedList(data);
 
-            //store the value of the ACE value into an integer
-            int currAceValue = data.getAce();
-
-            // Insert `curr` into the sorted part
-            if (sorted == null ||
-                    sorted.value >= currentNode.value) {
-                currentNode.next = sorted;
-
-                // If sorted is not empty, set its `prev`
-                if (sorted != null) sorted.previous = currentNode;
-
-                // Update sorted to the new head
-                sorted = currentNode;
-                sorted.previous = null;
-
+            //if the value's ace is greater than the ace of the current value
+            if (value.getAce() > data.getAce()) {
+                //and if the next value is null
+                if(hasNext())
+                {
+                    setNext(currValue);
+                }
             }
-            else {
 
-                // Pointer to traverse the sorted part
-                HurricaneRowData currentSorted = sorted;
-
-                // Find the correct position to insert
-                while (currentSorted.next != null &&
-                        currentSorted.next.value < currentNode.value) {
-                    currentSorted = currentSorted.next;
+            else
+            {
+                if(hasPrevious())
+                {
+                    setPrevious(currValue);
                 }
 
-                // Insert `curr` after `currentSorted`
-                currentNode.next = currentSorted.next;
-
-                // Set `prev` if `curr` is not inserted
-                // at the end
-                if (currentSorted.next != null)
-                    currentSorted.next.prev = currentNode;
-
-                // Set `next` of `currentSorted` to `curr`
-                currentSorted.next = currentNode;
-                currentNode.previous = currentSorted;
             }
-            currentNode = next;
-        }
-
-        return sorted;
-    }
+        }   //end else
+    }   //end insert
 
     @Override
     //Return the entire list as a multi-line String
