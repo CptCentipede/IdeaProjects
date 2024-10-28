@@ -8,8 +8,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        //instantiate imperial and ordered classes
-        //SortedTreeSetInterface imperialSet = new SortedTreeSet();
+        //instantiate tree as a new object
         SortedTreeSetInterface orderedSet = new SortedTreeSet();
 
         //use try catch for file input
@@ -37,17 +36,14 @@ public class Main
                 double weight = fileReader.nextDouble();
 
 
-                //create an object of type Person for the imperial and ordered set
-                //Person imperialPerson = new Person(name, height, weight);
+                //create an object of type Person for the tree ordered set
                 Person newPerson = new Person(name, height, weight);
 
-                //add the person to the imperial and ordered classes
-                //imperialSet.add(imperialPerson);
+                //add the person to the tree ordered set
                 orderedSet.add(newPerson);
             }   //end of while loop
 
-            //print imperial and ordered sets to command line
-            //System.out.println(imperialSet.toString()+"\n");
+            //print tree ordered set
             System.out.println(orderedSet.toString());
 
             //close the scanner that reads data from file
@@ -61,12 +57,7 @@ public class Main
         //write a file for output using try catch
         try
         {
-            //write a file for the PersonImperialSet
-            /*FileWriter writeImperial = new FileWriter("hr_imperial_set_output.txt");
-            writeImperial.write(imperialSet.toString());
-            writeImperial.close();*/
-
-            //write a file for the PersonOrderedSet
+            //write a file for the TreeOrderedSet
             FileWriter writeOrdered = new FileWriter("tree_output.txt");
             writeOrdered.write(orderedSet.toString());
             writeOrdered.close();
