@@ -74,6 +74,12 @@ public class Main
                 }   //end for loop cols
             }   //end for loop rows
 
+            //test if matrices were populated correctly
+            print2dArray(matrix1);
+            System.out.println();
+            print2dArray(matrix2);
+            System.out.println();
+
             //create references to the four quadrants
             String quad1 = "First Quadrant";
             String quad2 = "Second Quadrant";
@@ -111,10 +117,21 @@ public class Main
         {
             System.out.println("sorry your file cannot be found");
         }   //end of catch
+
+        //test matrix
+        int[][] testMatrix =
+        {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        //print test matrix
+        print2dArray(testMatrix);
     }   //end main
 
     //method that prints out the 2D array
-    public void print2dArray(int[][] matrix)
+    public static void print2dArray(int[][] matrix)
     {
         //loop through the rows
         for(int i=0; i< matrix.length; i++)
