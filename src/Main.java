@@ -64,10 +64,10 @@ public class Main
 
             //populate the second matrix
             //first the rows
-            for(int i=numRows; i<(2*numRows); i++)
+            for(int i=0; i<numRows; i++)
             {
                 //then the columns
-                for(int j=numCols; j<(2*numCols); j++)
+                for(int j=0; j<numCols; j++)
                 {
                     //put the next integer at index [i][j]
                     matrix2[i][j] = fileReader.nextInt();
@@ -75,10 +75,10 @@ public class Main
             }   //end for loop rows
 
             //test if matrices were populated correctly
+            System.out.println("First matrix in file");
             print2dArray(matrix1);
-            System.out.println();
+            System.out.println("\nSecond matrix in file");
             print2dArray(matrix2);
-            System.out.println();
 
             //create references to the four quadrants
             String quad1 = "First Quadrant";
@@ -127,6 +127,7 @@ public class Main
         };
 
         //print test matrix
+        System.out.println("\nTest matrix");
         print2dArray(testMatrix);
     }   //end main
 
@@ -140,9 +141,14 @@ public class Main
             for (int j = 0; j<matrix[i].length; j++)
             {
                 //print the value
-                System.out.printf(matrix[i][j] + " ");
+                System.out.printf("%d ", matrix[i][j]);
             }   //end for loop columns
             System.out.println();
         }   //end for loop rows
     }  //end print2dArray
+
+    /*public static int[][] matrixFromFile(int rows, int columns, Scanner file_reader)
+    {
+
+    }  //end matrixFromFile*/
 }   //end class
