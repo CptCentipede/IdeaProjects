@@ -117,14 +117,15 @@ public class Main
     public void print2dArray(int[][] matrix)
     {
         //loop through the rows
-        for(int i=0; i<; i++)
+        for(int i=0; i< matrix.length; i++)
         {
             //loop through the columns
-            for (int j = 0; j <; j++)
+            for (int j = 0; j<matrix[i].length; j++)
             {
                 //print the value
-                System.out.printf("");
+                System.out.printf(matrix[i][j] + " ");
             }   //end for loop columns
+            System.out.println();
         }   //end for loop rows
     }  //end print2dArray
 }   //end class
