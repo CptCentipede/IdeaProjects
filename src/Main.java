@@ -46,33 +46,9 @@ public class Main
             int numRows = fileReader.nextInt();
             int numCols = fileReader.nextInt();
 
-            //create two matrices to store the data
-            int[][] matrix1 = new int[numRows][numCols];
-            int[][] matrix2 = new int[numRows][numCols];
-
-            //populate the first matrix
-            //first the rows
-            for(int i=0; i<numRows; i++)
-            {
-                //then the columns
-                for(int j=0; j<numCols; j++)
-                {
-                    //put the next integer at index [i][j]
-                    matrix1[i][j] = fileReader.nextInt();
-                }   //end for loop cols
-            }   //end for loop rows
-
-            //populate the second matrix
-            //first the rows
-            for(int i=0; i<numRows; i++)
-            {
-                //then the columns
-                for(int j=0; j<numCols; j++)
-                {
-                    //put the next integer at index [i][j]
-                    matrix2[i][j] = fileReader.nextInt();
-                }   //end for loop cols
-            }   //end for loop rows
+            //create two matrices and store data from file using matrixFromFile method
+            int[][] matrix1 = matrixFromFile(numRows, numCols, fileReader);
+            int[][] matrix2 = matrixFromFile(numRows, numCols, fileReader);
 
             //test if matrices were populated correctly
             System.out.println("First matrix in file");
@@ -147,8 +123,24 @@ public class Main
         }   //end for loop rows
     }  //end print2dArray
 
-    /*public static int[][] matrixFromFile(int rows, int columns, Scanner file_reader)
+    public static int[][] matrixFromFile(int rows, int columns, Scanner file_reader)
     {
+        //create a matrix to be returned
+        int[][] tempMatrix = new int[rows][columns];
 
-    }  //end matrixFromFile*/
+        //populate the matrix
+        //first the rows
+        for(int i=0; i<rows; i++)
+        {
+            //then the columns
+            for(int j=0; j<columns; j++)
+            {
+                //put the next integer at index [i][j]
+                tempMatrix[i][j] = file_reader.nextInt();
+            }   //end for loop cols
+        }   //end for loop rows
+
+        //return the matrix
+        return tempMatrix;
+    }  //end matrixFromFile
 }   //end class
