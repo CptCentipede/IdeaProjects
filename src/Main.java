@@ -16,6 +16,7 @@ for the opportunity of 32 different threads that can be used to make the process
 complete. Since some threads can become blocked on certain IO operations, it is also important that the CPU switches
 to another thread, so that it is not utterly idle.
 */
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
@@ -25,6 +26,36 @@ public class Main
     //should not need to use scanner for anything other than nextInt()
     public static void main(String[] args)
     {
+        //create two matrices to store the data from the file
+
+        //use try catch for file input
+        try {
+            //create a basic file that will be read if there are no arguments on the command prompt
+            File matrixFile = new File("test.txt");
+
+            //take an argument from the command prompt for the file name
+            if (0 < args.length) {
+                String filename = args[0];
+                matrixFile = new File(filename);
+            }
+
+            //add file and create a scanner that will read the info from that file
+            Scanner fileReader = new Scanner(matrixFile);
+
+            //while the file has more data keep reading the data
+            while (fileReader.hasNext())
+            {
+
+            }   //end of while loop
+
+            //close the scanner that reads data from file
+            fileReader.close();
+        }   //end of try
+        catch(FileNotFoundException e)
+        {
+            System.out.println("sorry your file cannot be found");
+        }   //end of catch
+
         //create four threads that will add each quadrant concurrently
         ThreadOperation thread1 = new ThreadOperation();
         ThreadOperation thread2 = new ThreadOperation();
