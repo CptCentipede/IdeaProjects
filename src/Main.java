@@ -52,6 +52,30 @@ public class Main
                 //create two matrices to store the data
                 int[][] matrix1 = new int[numRows][numCols];
                 int[][] matrix2 = new int[numRows][numCols];
+
+                //populate the first matrix
+                //first the rows
+                for(int i=0; i<numRows; i++)
+                {
+                    //then the columns
+                    for(int j=0; j<numCols; j++)
+                    {
+                        //put the next integer at index [i][j]
+                        matrix1[i][j] = fileReader.nextInt();
+                    }   //end for loop cols
+                }   //end for loop rows
+
+                //populate the second matrix
+                //first the rows
+                for(int i=numRows; i<(2*numRows); i++)
+                {
+                    //then the columns
+                    for(int j=numCols; j<(2*numCols); j++)
+                    {
+                        //put the next integer at index [i][j]
+                        matrix2[i][j] = fileReader.nextInt();
+                    }   //end for loop cols
+                }   //end for loop rows
             }   //end of while loop
 
             //close the scanner that reads data from file
