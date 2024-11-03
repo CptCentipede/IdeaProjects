@@ -45,7 +45,13 @@ public class Main
             //while the file has more data keep reading the data
             while (fileReader.hasNext())
             {
+                //read the dimensions for the number of rows and columns
+                int numRows = fileReader.nextInt();
+                int numCols = fileReader.nextInt();
 
+                //create two matrices to store the data
+                int[][] matrix1 = new int[numRows][numCols];
+                int[][] matrix2 = new int[numRows][numCols];
             }   //end of while loop
 
             //close the scanner that reads data from file
