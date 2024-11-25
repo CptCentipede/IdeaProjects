@@ -4,14 +4,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client
 {
-	//instance variable for arraylist
-	//private ArrayList<Integer> arrListToAvg;
-
 	private final Scanner userInput = 
 					new Scanner(System.in);
 	private ObjectOutputStream output;
@@ -75,13 +71,11 @@ public class Client
 	private void processConnection() throws IOException
 	{
 		String message;
-
 		do
 		{
-			System.out.print("Type a String or int: ");
+			System.out.print("Type either a number or a word: ");
 			message = userInput.nextLine();
-			if(message != "")
-			{
+			if(message != "") {
 				sendData(message);
 			}
 			try // read message and display it

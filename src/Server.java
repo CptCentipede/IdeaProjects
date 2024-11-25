@@ -16,6 +16,9 @@ public class Server
 	private final int portNumber = 12345;
 	private final int backlogLimit = 100;
 
+	//instance variable for arraylist
+	ArrayList<Integer> arrListToAvg;
+
 	// set up and run server 
 	public void runServer()
 	{
@@ -70,30 +73,23 @@ public class Server
 	// process connection with client
 	private void processConnection() throws IOException
 	{
-		String message = "";
-		ArrayList<Integer> arrListToAvg = null;
-
 		do // process messages sent from client
 		{
-			try
+			try // read message and display it
 			{
-				Integer x = Integer.parseInt(message);
-				arrListToAvg.add(x);
-
-				String messageForInt = String.valueOf(avgOfArrList(arrListToAvg));
-				sendData(messageForInt);
+				Object message = input.readObject();
+				try
+				{
+					Integer x = (Integer)message;
+					//Your code goes here
+				}
+				catch(java.lang.NumberFormatException e)
+				{
+					String s = (String)message;
+					//Your code goes here
+				}
 			}
-			catch(NumberFormatException e) {
-				String s = (String) message;
-				sendData(message);
-			}
-			/*try // read message and display it
-			{
-				message = (String) input.readObject();
-				
-				System.out.println("\nCLIENT>>>" + message);
-			} */
-			catch (ClassNotFoundException e) 
+			catch (ClassNotFoundException e)
 			{
 				System.out.println("\nUnknown object type received");
 			}
@@ -145,20 +141,4 @@ public class Server
 			System.out.println("\nError writing object");
 		}
 	}
-
-		//take the average of the arraylist
-		private int avgOfArrList(ArrayList<Integer> arrListToAvg)
-		{
-			int addition = 0;
-			int avg = 0;
-
-			for(int i=0; i<arrListToAvg.size(); i++)
-			{
-				addition += arrListToAvg.get(i);
-			}
-
-			avg = addition/arrListToAvg.size();
-
-			return avg;
-		}
 }

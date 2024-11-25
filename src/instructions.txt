@@ -1,0 +1,20 @@
+
+Modify the provided Client code such that the client is prompted to either enter a String or an int. In either case, the data is transmitted to the Server.
+
+Modify the provided Server code such that it uses the following try-catch to parse the received data as a String or an Integer. If a String was sent, echo back the String to the Client, if an Integer was sent, append it to a growing ArrayList and send back the average of the elements in the ArrayList.
+
+	Object message = input.readObject();
+	try
+	{
+		Integer x = Integer.parseInt(message);
+		//Your code goes here
+	}
+	catch(java.lang.NumberFormatException e)
+	{
+		String s = (String)message;
+		//Your code goes here
+	}
+
+You will need to instantiate the ArrayList as ArrayList<Integer> since ArrayLists do not store primitive types.
+
+You will need to use instanceof on both ends of the connection, and should display what is transmitted over the network on both ends.
