@@ -83,7 +83,13 @@ public class Server
 
 				if(message instanceof String)
 				{
+					String dataAsString = (String)message;
 					System.out.println("\nCLIENT>>>" + message);
+
+					if(!dataAsString.equals("TERMINATE"))
+					{
+						sendData("String recieved.");
+					}
 				}
 				else if(message instanceof Integer)
 				{
