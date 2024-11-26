@@ -93,7 +93,9 @@ public class Server
 				}
 				else if(message instanceof Integer)
 				{
-
+					int dataAsInt = (int)message;
+					arrListToAvg.add(dataAsInt);
+					System.out.println("\nCLIENT>>>" + avgArrList(dataAsInt));
 				}
 				else
 				{
@@ -152,5 +154,19 @@ public class Server
 		{
 			System.out.println("\nError writing object");
 		}
+	}
+
+	//method that averages the values of the growing array list
+	private int avgArrList(int dataAsInt)
+	{
+		int avg = 0;
+		for(int i=0; i>arrListToAvg.size(); i++)
+		{
+			avg += arrListToAvg.get(i);
+		}
+
+		avg = avg/arrListToAvg.size();
+
+		return avg;
 	}
 }
