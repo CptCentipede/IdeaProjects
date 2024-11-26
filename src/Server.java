@@ -73,20 +73,26 @@ public class Server
 	// process connection with client
 	private void processConnection() throws IOException
 	{
+		Object message = null;
+
 		do // process messages sent from client
 		{
 			try // read message and display it
 			{
-				Object message = input.readObject();
-				try
+				message = input.readObject();
+
+				if(message instanceof String)
 				{
-					Integer x = (Integer)message;
-					//Your code goes here
+					System.out.println("\nCLIENT>>>" + message);
 				}
-				catch(java.lang.NumberFormatException e)
+				else if(message instanceof Integer)
 				{
-					String s = (String)message;
-					//Your code goes here
+
+				}
+				else
+				{
+					System.out.println("Type not recognized.");
+					System.out.println(message);
 				}
 			}
 			catch (ClassNotFoundException e)
