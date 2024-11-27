@@ -70,28 +70,29 @@ public class Client
 	// process connection with server
 	private void processConnection() throws IOException
 	{
-		Object message = null;
+		String message;
 		do
 		{
-			System.out.print("Type either a number or a word: ");
+			System.out.print("Type a message: ");
 			message = userInput.nextLine();
-			if(message != null) {
-				sendData((String) message);
+			if(message != "") {
+				try
+				{
+					Integer x = Integer.parseInt(message);
+					//Your code goes here
+					sendData(x);
+				}
+				catch(java.lang.NumberFormatException e)
+				{
+					String s = (String)message;
+					//Your code goes here
+					sendData(s);
+				}
 			}
 			try // read message and display it
 			{
-				message = input.readObject();
-
-				if(message instanceof String)
-				{
-					String dataAsString = (String)message;
-					System.out.println("\nSERVER>>>" + dataAsString);
-				}
-				else if(message instanceof Integer)
-				{
-					int dataAsInt = (int)message;
-					System.out.println("\nSERVER>>>" + dataAsInt);
-				}
+				message = (String)input.readObject();
+				System.out.println("\nSERVER>>>" + message);
 			}
 			catch (ClassNotFoundException e) 
 			{
@@ -118,7 +119,7 @@ public class Client
 	}
 
 	// send message to server
-	private void sendData(String message)
+	private void sendData(Object message)
 	{
 		try
 		{

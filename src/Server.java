@@ -16,8 +16,7 @@ public class Server
 	private final int portNumber = 12345;
 	private final int backlogLimit = 100;
 
-	//instance variable for arraylist
-	ArrayList<Integer> arrListToAvg;
+//	ArrayList<Integer> arrListToAvg;
 
 	// set up and run server 
 	public void runServer()
@@ -74,6 +73,8 @@ public class Server
 	private void processConnection() throws IOException
 	{
 		Object message = null;
+		ArrayList<Integer> arrListToAvg = new ArrayList<>();
+
 
 		do // process messages sent from client
 		{
@@ -83,42 +84,34 @@ public class Server
 
 				if(message instanceof String)
 				{
-					String dataAsString = (String)message;
 					System.out.println("\nCLIENT>>>" + message);
 
-					if(!dataAsString.equals("TERMINATE"))
+					if(!message.equals("TERMINATE"))
 					{
-						sendData("String recieved.");
+						sendData("Server Received String " + message);
 					}
 				}
 				else if(message instanceof Integer)
 				{
-					int dataAsInt = (int)message;
-					arrListToAvg.add(dataAsInt);
-					System.out.println("\nCLIENT>>>" + avgArrList(dataAsInt));
+					arrListToAvg.add((Integer) message);
+					System.out.println("\nCLIENT>>>" + avgArrList(arrListToAvg));
+
+					sendData("Server Received int " + message);
 				}
 				else
 				{
+					//Maybe put an error check here.
 					System.out.println("Type not recognized.");
 					System.out.println(message);
 				}
-			}
-			catch (ClassNotFoundException e)
+			} 
+			catch (ClassNotFoundException e) 
 			{
 				System.out.println("\nUnknown object type received");
 			}
 			
-			//Unless client requests terminate, reply.
-			if(!message.equals("TERMINATE"))
-			{
-				/* Send the same message back to 
-				the client every time. This
-				prevents the Client from hanging
-				on this line of code:
-				message = (String) input.readObject(); */
-				sendData("OK, Client\n");
-			}
-		} while (!message.equals("TERMINATE"));
+
+		} while (!(message instanceof String &&((String)message).equals("TERMINATE")));
 		
 		/* Send this so the client has
 		confirmation that the connection 
@@ -157,10 +150,10 @@ public class Server
 	}
 
 	//method that averages the values of the growing array list
-	private int avgArrList(int dataAsInt)
+	private int avgArrList(ArrayList<Integer> arrListToAvg)
 	{
 		int avg = 0;
-		for(int i=0; i>arrListToAvg.size(); i++)
+		for(int i=0; i<arrListToAvg.size(); i++)
 		{
 			avg += arrListToAvg.get(i);
 		}
