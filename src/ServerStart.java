@@ -1,4 +1,9 @@
-
+/*
+Name: Miles Aether
+Date: 1 December 2024
+Class: CSCI 2251
+Purpose: Starts the server when compiled and ran
+*/
 
 public class ServerStart
 {

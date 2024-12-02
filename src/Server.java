@@ -1,3 +1,10 @@
+/*
+Name: Miles Aether
+Date: 1 December 2024
+Class: CSCI 2251
+Purpose: Server that currently takes in data from the client GUI to print out either a string or matrix
+*/
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,11 +14,11 @@ import java.net.Socket;
 
 public class Server
 {
+    //instance variables
     private ObjectOutputStream output;
     private ObjectInputStream input;
     private ServerSocket server;
     private Socket connection;
-
     private final int portNumber = 12345;
     private final int backlogLimit = 100;
 
@@ -69,35 +76,46 @@ public class Server
     // process connection with client
     private void processConnection() throws IOException
     {
+        //instantiate the message and set to null
         Object message = null;
 
-        do // process messages sent from client
+        do
         {
-            try // read message and display it
+            try
             {
+                //read message from client
                 message = input.readObject();
 
+                //if the message is a String print it out
                 if(message instanceof String)
                 {
+                    //cast to string and print
                     String data_from_client = (String)message;
-                    System.out.println("\nCLIENT>>>" + message);
+                    System.out.println("\nCLIENT>>>" + data_from_client);
                     System.out.println();
                 }
+
+                //if the message is a 2darray loop through the array and print it out
                 if(message instanceof int[][])
                 {
+                    //cast to 2darray
                     int[][] data_from_client = (int[][])message;
 
+                    //loop through rows
                     for(int i=0; i<data_from_client.length; i++)
                     {
+                        //loop through columns
                         for(int j=0; j<data_from_client[i].length; j++)
                         {
+                            //print at index
                             System.out.print(data_from_client[i][j] + " ");
                         }
+                        //print lines between rows
                         System.out.println();
                     }
                     System.out.println();
                 }
-            }
+            }   //end try
             catch (ClassNotFoundException e)
             {
                 System.out.println("\nUnknown object type received");
@@ -119,7 +137,7 @@ public class Server
 		confirmation that the connection 
 		should be terminated. */
         sendData("TERMINATE");
-    }
+    }   //end processConnection
 
     // close streams and socket
     private void closeConnection()
@@ -150,4 +168,4 @@ public class Server
             System.out.println("\nError writing object");
         }
     }
-}
+}   //end class

@@ -1,3 +1,10 @@
+/*
+Name: Miles Aether
+Date: 1 December 2024
+Class: CSCI 2251
+Purpose: Client with GUI that send data to server from JTextField
+*/
+
 //imports for client components
 import java.io.*;
 import java.net.InetAddress;
@@ -33,9 +40,10 @@ public class Client extends JFrame
     private final int portNumber = 12345;
 
 
-    //set up GUI
+    //constructor with GUI
     public Client()
     {
+        //name of GUI
         super("Client");
 
         // create enterField and register its listener
@@ -50,14 +58,16 @@ public class Client extends JFrame
                     // get the file name specified by user
                     public void actionPerformed(ActionEvent event) {
                         getFile(event.getActionCommand());
+                        //sends the text to server
                         sendData(enterField.getText());
                     }
                 }
         );
 
+        //set size and visibility
         setSize(400, 300); // set size of window
         setVisible(true);  // show window
-    }
+    }   //end constructor
 
     // connect to server and process messages from server
     public void runClient()
@@ -111,10 +121,14 @@ public class Client extends JFrame
     // process connection with server
     private void processConnection() throws IOException
     {
+        //instantiate object
         Object message;
         do
         {
+            //set message equal to something, so that it doesn't disconnect
             message = "";
+
+            //if the message isn't empty send to server
             if(!message.equals("")) {
                 sendData(message);
             }
@@ -129,7 +143,7 @@ public class Client extends JFrame
             }
 
         } while (!message.equals("TERMINATE"));
-    }
+    }   //end processConnection
 
     // close streams and socket
     private void closeConnection()
@@ -164,12 +178,16 @@ public class Client extends JFrame
     // load document
     private void getFile(Object file_name)
     {
+        //set file to the string value of the name of the file input
         file = new File(String.valueOf(file_name));
         try {
+            //create scanner for file
             fileInput = new Scanner(file);
 
+            //print file name input to command line
             System.out.print(file + "\n");
 
+            //while the file has more lines
             while (fileInput.hasNextLine()) {
                 //read the dimensions for the number of rows and columns
                 int numRows = fileInput.nextInt();
@@ -179,13 +197,17 @@ public class Client extends JFrame
                 int[][] matrix1 = matrixFromFile(numRows, numCols, fileInput);
                 int[][] matrix2 = matrixFromFile(numRows, numCols, fileInput);
 
+                //send these matrices to the server
                 sendData(matrix1);
                 sendData(matrix2);
             }
 
 
-        } catch (FileNotFoundException e) {
+        }   //end try
+        catch (FileNotFoundException e) {
+            //print out whatever else might have been typed to command line
             System.out.print(file + "\n");
+            //if what was type was TERMINATE close the GUI
             if(file_name.equals("TERMINATE"))
             {
                 System.exit(1);
@@ -193,7 +215,7 @@ public class Client extends JFrame
         }
 
 
-    }
+    }   //end getFile
 
     //method that reads the matrix from the file and sets it to the new matrix to be used in the thread
     public static int[][] matrixFromFile(int rows, int columns, Scanner file_reader)
@@ -216,4 +238,4 @@ public class Client extends JFrame
         //return the matrix
         return tempMatrix;
     }  //end matrixFromFile
-}
+}   //end class
