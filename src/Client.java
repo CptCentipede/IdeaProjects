@@ -1,8 +1,5 @@
 //imports for client components
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
@@ -17,17 +14,50 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-public class Client
+public class Client extends JFrame
 {
-    private final Scanner userInput =
-            new Scanner(System.in);
+    //instance variables for client components
+    //private final Scanner userInput =
+            //new Scanner(System.in);
     private ObjectOutputStream output;
     private ObjectInputStream input;
     private Socket client;
 
+    //instance variables for GUI components
+    private JTextField enterField;  // JTextField to enter the matrix file name
+    private JTextArea displayArea;  // JTextAreato display the computation result
+    private File file;
+    private Scanner userInput;
+
     //Use local host and port 12345
     private final String host = "127.0.0.1";
     private final int portNumber = 12345;
+
+
+    //set up GUI
+    public Client()
+    {
+        super("Client");
+
+        // create enterField and register its listener
+        enterField = new JTextField("Enter file name here");
+        add(enterField, BorderLayout.NORTH);
+
+        displayArea = new JTextArea();
+        add(new JScrollPane(displayArea), BorderLayout.CENTER);
+
+        enterField.addActionListener(
+                new ActionListener() {
+                    // get the file name specified by user
+                    public void actionPerformed(ActionEvent event) {
+                        getFile(event.getActionCommand());
+                    }
+                }
+        );
+
+        setSize(400, 300); // set size of window
+        setVisible(true);  // show window
+    }
 
     // connect to server and process messages from server
     public void runClient()
@@ -84,7 +114,6 @@ public class Client
         String message;
         do
         {
-            System.out.print("Type a message: ");
             message = userInput.nextLine();
             if(!message.equals("")) {
                 sendData(message);
@@ -129,6 +158,25 @@ public class Client
         catch (IOException e)
         {
             System.out.println("\nError writing object");
+        }
+    }
+
+    // load document
+    private void getFile(String file_name)
+    {
+        file = new File(file_name);
+        try {
+            userInput = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.printf("%nError on file: %s (either enpty or wrong file format)%n%n", file);
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        String s;
+        while (userInput.hasNextLine()) {
+            s = userInput.nextLine();
+            displayArea.append(s + "\n");
         }
     }
 }
