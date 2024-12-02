@@ -179,8 +179,8 @@ public class Client extends JFrame
                 int[][] matrix1 = matrixFromFile(numRows, numCols, fileInput);
                 int[][] matrix2 = matrixFromFile(numRows, numCols, fileInput);
 
-                //sendData(matrix1);
-                //sendData(matrix2);
+                sendData(matrix1);
+                sendData(matrix2);
             }
 
 

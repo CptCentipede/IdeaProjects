@@ -69,15 +69,34 @@ public class Server
     // process connection with client
     private void processConnection() throws IOException
     {
-        String message = "";
+        Object message = null;
 
         do // process messages sent from client
         {
             try // read message and display it
             {
-                message = (String) input.readObject();
+                message = input.readObject();
 
-                System.out.println("\nCLIENT>>>" + message);
+                if(message instanceof String)
+                {
+                    String data_from_client = (String)message;
+                    System.out.println("\nCLIENT>>>" + message);
+                    System.out.println();
+                }
+                if(message instanceof int[][])
+                {
+                    int[][] data_from_client = (int[][])message;
+
+                    for(int i=0; i<data_from_client.length; i++)
+                    {
+                        for(int j=0; j<data_from_client[i].length; j++)
+                        {
+                            System.out.print(data_from_client[i][j] + " ");
+                        }
+                        System.out.println();
+                    }
+                    System.out.println();
+                }
             }
             catch (ClassNotFoundException e)
             {
@@ -85,7 +104,7 @@ public class Server
             }
 
             //Unless client requests terminate, reply.
-            if(!message.equals("TERMINATE"))
+            if(!(message instanceof String && ((String)message).equals("TERMINATE") ))
             {
 				/* Send the same message back to 
 				the client every time. This
@@ -94,7 +113,7 @@ public class Server
 				message = (String) input.readObject(); */
                 sendData("OK, Client\n");
             }
-        } while (!message.equals("TERMINATE"));
+        } while (!(message instanceof String && ((String)message).equals("TERMINATE") ));
 		
 		/* Send this so the client has
 		confirmation that the connection 
