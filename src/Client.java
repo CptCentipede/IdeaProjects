@@ -17,8 +17,7 @@ import javax.swing.SwingUtilities;
 public class Client extends JFrame
 {
     //instance variables for client components
-    //private final Scanner userInput =
-            //new Scanner(System.in);
+    private String userInput = "";
     private ObjectOutputStream output;
     private ObjectInputStream input;
     private Socket client;
@@ -27,7 +26,7 @@ public class Client extends JFrame
     private JTextField enterField;  // JTextField to enter the matrix file name
     private JTextArea displayArea;  // JTextAreato display the computation result
     private File file;
-    private Scanner userInput;
+    private Scanner fileInput;
 
     //Use local host and port 12345
     private final String host = "127.0.0.1";
@@ -51,6 +50,7 @@ public class Client extends JFrame
                     // get the file name specified by user
                     public void actionPerformed(ActionEvent event) {
                         getFile(event.getActionCommand());
+                        sendData(enterField.getText());
                     }
                 }
         );
@@ -114,9 +114,9 @@ public class Client extends JFrame
         Object message;
         do
         {
-            message = userInput.nextLine();
+            message = "";
             if(!message.equals("")) {
-                sendData(getFile(message));
+                sendData(message);
             }
             try // read message and display it
             {
@@ -166,7 +166,24 @@ public class Client extends JFrame
     {
         file = new File(String.valueOf(file_name));
         try {
-            userInput = new Scanner(file);
+            fileInput = new Scanner(file);
+
+            System.out.print(file + "\n");
+
+            while (fileInput.hasNextLine()) {
+                //read the dimensions for the number of rows and columns
+                int numRows = fileInput.nextInt();
+                int numCols = fileInput.nextInt();
+
+                //create two matrices and store data from file using matrixFromFile method
+                int[][] matrix1 = matrixFromFile(numRows, numCols, fileInput);
+                int[][] matrix2 = matrixFromFile(numRows, numCols, fileInput);
+
+                //sendData(matrix1);
+                //sendData(matrix2);
+            }
+
+
         } catch (FileNotFoundException e) {
             System.out.print(file + "\n");
             if(file_name.equals("TERMINATE"))
@@ -175,19 +192,7 @@ public class Client extends JFrame
             }
         }
 
-        String s;
-        while (userInput.hasNextLine()) {
-            s = userInput.nextLine();
-            displayArea.append(s + "\n");
-        }
 
-        //read the dimensions for the number of rows and columns
-        int numRows = userInput.nextInt();
-        int numCols = userInput.nextInt();
-
-        //create two matrices and store data from file using matrixFromFile method
-        int[][] matrix1 = matrixFromFile(numRows, numCols, userInput);
-        int[][] matrix2 = matrixFromFile(numRows, numCols, userInput);
     }
 
     //method that reads the matrix from the file and sets it to the new matrix to be used in the thread
