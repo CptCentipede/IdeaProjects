@@ -111,12 +111,12 @@ public class Client extends JFrame
     // process connection with server
     private void processConnection() throws IOException
     {
-        String message;
+        Object message;
         do
         {
             message = userInput.nextLine();
             if(!message.equals("")) {
-                sendData(message);
+                sendData(getFile(message));
             }
             try // read message and display it
             {
@@ -148,7 +148,7 @@ public class Client extends JFrame
     }
 
     // send message to server
-    private void sendData(String message)
+    private void sendData(Object message)
     {
         try
         {
@@ -162,15 +162,17 @@ public class Client extends JFrame
     }
 
     // load document
-    private void getFile(String file_name)
+    private void getFile(Object file_name)
     {
-        file = new File(file_name);
+        file = new File(String.valueOf(file_name));
         try {
             userInput = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.printf("%nError on file: %s (either enpty or wrong file format)%n%n", file);
-            e.printStackTrace();
-            System.exit(1);
+            System.out.print(file + "\n");
+            if(file_name.equals("TERMINATE"))
+            {
+                System.exit(1);
+            }
         }
 
         String s;
@@ -178,5 +180,35 @@ public class Client extends JFrame
             s = userInput.nextLine();
             displayArea.append(s + "\n");
         }
+
+        //read the dimensions for the number of rows and columns
+        int numRows = userInput.nextInt();
+        int numCols = userInput.nextInt();
+
+        //create two matrices and store data from file using matrixFromFile method
+        int[][] matrix1 = matrixFromFile(numRows, numCols, userInput);
+        int[][] matrix2 = matrixFromFile(numRows, numCols, userInput);
     }
+
+    //method that reads the matrix from the file and sets it to the new matrix to be used in the thread
+    public static int[][] matrixFromFile(int rows, int columns, Scanner file_reader)
+    {
+        //create a matrix to be returned
+        int[][] tempMatrix = new int[rows][columns];
+
+        //populate the matrix
+        //first the rows
+        for(int i=0; i<rows; i++)
+        {
+            //then the columns
+            for(int j=0; j<columns; j++)
+            {
+                //put the next integer at index [i][j]
+                tempMatrix[i][j] = file_reader.nextInt();
+            }   //end for loop cols
+        }   //end for loop rows
+
+        //return the matrix
+        return tempMatrix;
+    }  //end matrixFromFile
 }
