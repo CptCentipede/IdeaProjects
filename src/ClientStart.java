@@ -13,7 +13,6 @@ public class ClientStart
     {
         //create the client and set its default to close after pressing the x
         Client c = new  Client();
-        c.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         c.runClient();
     }
 }

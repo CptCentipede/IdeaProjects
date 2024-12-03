@@ -6,6 +6,8 @@ Purpose: Client with GUI that send data to server from JTextField
 */
 
 //imports for client components
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -48,6 +50,7 @@ public class Client extends JFrame
 
         // create enterField and register its listener
         enterField = new JTextField("Enter file name here");
+        enterField.setEditable(false);
         add(enterField, BorderLayout.NORTH);
 
         displayArea = new JTextArea();
@@ -59,10 +62,22 @@ public class Client extends JFrame
                     public void actionPerformed(ActionEvent event) {
                         getFile(event.getActionCommand());
                         //sends the text to server
-                        sendData(enterField.getText());
+                        Object toSend = event.getActionCommand();
+                        sendData(toSend);
+                        //resets text field after pressing enter
+                        enterField.setText("");
                     }
                 }
         );
+
+        // Terminate connection properly when user closes the GUI. https://stackoverflow.com/questions/16372241/run-function-on-jframe-close
+        addWindowListener( new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Terminate the connection when the window gets closed.
+                sendData("TERMINATE");
+            }
+        });
 
         //set size and visibility
         setSize(400, 300); // set size of window
@@ -238,4 +253,18 @@ public class Client extends JFrame
         //return the matrix
         return tempMatrix;
     }  //end matrixFromFile
+
+    // manipulates enterField in the event-dispatch thread
+    private void setTextFieldEditable(final boolean editable)
+    {
+        SwingUtilities.invokeLater(
+                new Runnable()
+                {
+                    public void run() // sets enterField's editability
+                    {
+                        enterField.setEditable(editable);
+                    }
+                }
+        );
+    }
 }   //end class
