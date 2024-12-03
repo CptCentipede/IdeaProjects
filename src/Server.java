@@ -98,6 +98,40 @@ public class Server
                 //if the message is a 2darray loop through the array and print it out
                 if(message instanceof int[][])
                 {
+                    int[][] matrix1 = (int[][]) message;
+                    int[][] matrix2 = (int[][]) input.readObject();
+
+                    //create references to the four quadrants
+                    String quad1 = "First Quadrant";
+                    String quad2 = "Second Quadrant";
+                    String quad3 = "Third Quadrant";
+                    String quad4 = "Fourth Quadrant";
+
+                    //create four threads that will add each quadrant concurrently
+                    ThreadOperation thread1 = new ThreadOperation(matrix1, matrix2, quad1);
+                    ThreadOperation thread2 = new ThreadOperation(matrix1, matrix2, quad2);
+                    ThreadOperation thread3 = new ThreadOperation(matrix1, matrix2, quad3);
+                    ThreadOperation thread4 = new ThreadOperation(matrix1, matrix2, quad4);
+
+                    //start the threads
+                    thread1.start();
+                    thread2.start();
+                    thread3.start();
+                    thread4.start();
+
+                    //join threads so that they will complete before the rest of the program continnues
+                    try{
+                        thread1.join();
+                        thread2.join();
+                        thread3.join();
+                        thread4.join();
+                    }   //end try
+                    catch(InterruptedException e)
+                    {
+                        System.out.println("Interrupted");
+                    }   //end catch
+                    /*int[][] sum = addArrays(array1, array2);
+                    out.writeObject(sum);
                     //cast to 2darray
                     int[][] data_from_client = (int[][])message;
 
@@ -113,7 +147,7 @@ public class Server
                         //print lines between rows
                         System.out.println();
                     }
-                    System.out.println();
+                    System.out.println();*/
                 }
             }   //end try
             catch (ClassNotFoundException e)
@@ -156,7 +190,7 @@ public class Server
     }
 
     // send message to client
-    private void sendData(String message)
+    private void sendData(Object message)
     {
         try
         {
