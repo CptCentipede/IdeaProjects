@@ -26,7 +26,7 @@ import javax.swing.SwingUtilities;
 public class Client extends JFrame
 {
     //instance variables for client components
-    private String userInput = "";
+    private String message = "";
     private ObjectOutputStream output;
     private ObjectInputStream input;
     private Socket client;
@@ -136,27 +136,19 @@ public class Client extends JFrame
     // process connection with server
     private void processConnection() throws IOException
     {
-        //instantiate object
-        Object message;
-        do
-        {
-            //set message equal to something, so that it doesn't disconnect
-            message = "";
+        // enable enterField so client user can send messages
+        setTextFieldEditable(true);
 
-            //if the message isn't empty send to server
-            if(!message.equals("")) {
-                sendData(message);
-            }
+        do {
             try // read message and display it
             {
-                message = (String)input.readObject();
+                message = (String) input.readObject(); // read new message
                 System.out.println("\nSERVER>>>" + message);
             }
-            catch (ClassNotFoundException e)
+            catch (ClassNotFoundException classNotFoundException)
             {
                 System.out.println("\nUnknown object type received");
             }
-
         } while (!message.equals("TERMINATE"));
     }   //end processConnection
 
@@ -164,6 +156,8 @@ public class Client extends JFrame
     private void closeConnection()
     {
         System.out.println("\nClosing connection");
+        setTextFieldEditable(false); // disable enterField
+
         try
         {
             output.close(); // close output stream
@@ -266,5 +260,5 @@ public class Client extends JFrame
                     }
                 }
         );
-    }
+    }   //  end setTextFieldEditable
 }   //end class
