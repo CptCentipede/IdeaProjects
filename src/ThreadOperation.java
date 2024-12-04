@@ -3,14 +3,16 @@ public class ThreadOperation extends Thread
     //instance variables
     private int[][] A;
     private int[][] B;
+    private int[][] matrixResult;
     private String quadrant;
 
     //constructor
-    ThreadOperation(int[][] A, int[][] B, String quadrant)
+    ThreadOperation(int[][] A, int[][] B, int[][] matrixResult, String quadrant)
     {
         //set the instance variables to the arguments added to ThreadOperation object
         this.A = A;
         this.B = B;
+        this.matrixResult = matrixResult;
         this.quadrant = quadrant;
     }  //end constructor
 
@@ -60,9 +62,6 @@ public class ThreadOperation extends Thread
     @Override
     public void run()
     {
-        //C belongs in main, but I am unsure how to store the data from each thread into that 2darray
-        int[][] C = new int[4][6];
-
         //get the indexes for the beginnings and ends of the rows and columns
         int[] indexes = getQuadrantIndexes(A.length, A[0].length, quadrant);
 
@@ -78,29 +77,8 @@ public class ThreadOperation extends Thread
             for(int c=colStart; c<colEnd; c++)
             {
                 //set the given index of C to the addition of A and B
-                C[r][c]= A[r][c] + B[r][c];
+                matrixResult[r][c]= A[r][c] + B[r][c];
             }
-
-            //not sure if this entire method should stay in main, but to print something
-            //this has to be put here
-            print2dArray(C);
         }
     }  //end run
-
-    //method that prints out the 2D array
-    public static void print2dArray(int[][] matrix)
-    {
-        //loop through the rows
-        for(int i=0; i< matrix.length; i++)
-        {
-            //loop through the columns
-            for (int j = 0; j<matrix[i].length; j++)
-            {
-                //print the value
-                System.out.printf("%d ", matrix[i][j]);
-            }   //end for loop columns
-            //print a line, so the next row can print below
-            System.out.println();
-        }   //end for loop rows
-    }  //end print2dArray
 }   //end class

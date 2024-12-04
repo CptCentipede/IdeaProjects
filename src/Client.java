@@ -26,7 +26,7 @@ import javax.swing.SwingUtilities;
 public class Client extends JFrame
 {
     //instance variables for client components
-    private String message = "";
+    private Object message = null;
     private ObjectOutputStream output;
     private ObjectInputStream input;
     private Socket client;
@@ -60,10 +60,10 @@ public class Client extends JFrame
                 new ActionListener() {
                     // get the file name specified by user
                     public void actionPerformed(ActionEvent event) {
-                        getFile(event.getActionCommand());
                         //sends the text to server
                         Object toSend = event.getActionCommand();
                         sendData(toSend);
+                        getFile(event.getActionCommand());
                         //resets text field after pressing enter
                         enterField.setText("");
                     }
@@ -142,8 +142,8 @@ public class Client extends JFrame
         do {
             try // read message and display it
             {
-                message = (String) input.readObject(); // read new message
-                System.out.println("\nSERVER>>>" + message);
+                message = input.readObject(); // read new message
+                System.out.println("\nSERVER>>> " + message);
             }
             catch (ClassNotFoundException classNotFoundException)
             {
@@ -163,6 +163,7 @@ public class Client extends JFrame
             output.close(); // close output stream
             input.close(); // close input stream
             client.close(); // close socket
+            System.exit(1);
         }
         catch (IOException e)
         {
@@ -261,4 +262,21 @@ public class Client extends JFrame
                 }
         );
     }   //  end setTextFieldEditable
+
+    //method that prints out the 2D array
+    public static void print2dArray(int[][] matrix)
+    {
+        //loop through the rows
+        for(int i=0; i< matrix.length; i++)
+        {
+            //loop through the columns
+            for (int j = 0; j<matrix[i].length; j++)
+            {
+                //print the value
+                System.out.printf("%d ", matrix[i][j]);
+            }   //end for loop columns
+            //print a line, so the next row can print below
+            System.out.println();
+        }   //end for loop rows
+    }  //end print2dArray
 }   //end class

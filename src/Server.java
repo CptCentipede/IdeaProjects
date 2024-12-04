@@ -101,6 +101,25 @@ public class Server
                     int[][] matrix1 = (int[][]) message;
                     int[][] matrix2 = (int[][]) input.readObject();
 
+                    for(int[] row: matrix1)
+                    {
+                        for(int element: row) {
+                            System.out.print(element + " ");
+                        }
+                        System.out.println();
+                    }
+                    System.out.println();
+                    for(int[] row: matrix2)
+                    {
+                        for(int element: row) {
+                            System.out.print(element + " ");
+                        }
+                        System.out.println();
+                    }
+                    System.out.println();
+
+                    int[][] matrixResult = new int[matrix1.length][matrix1[0].length];
+
                     //create references to the four quadrants
                     String quad1 = "First Quadrant";
                     String quad2 = "Second Quadrant";
@@ -108,10 +127,10 @@ public class Server
                     String quad4 = "Fourth Quadrant";
 
                     //create four threads that will add each quadrant concurrently
-                    ThreadOperation thread1 = new ThreadOperation(matrix1, matrix2, quad1);
-                    ThreadOperation thread2 = new ThreadOperation(matrix1, matrix2, quad2);
-                    ThreadOperation thread3 = new ThreadOperation(matrix1, matrix2, quad3);
-                    ThreadOperation thread4 = new ThreadOperation(matrix1, matrix2, quad4);
+                    ThreadOperation thread1 = new ThreadOperation(matrix1, matrix2, matrixResult, quad1);
+                    ThreadOperation thread2 = new ThreadOperation(matrix1, matrix2, matrixResult, quad2);
+                    ThreadOperation thread3 = new ThreadOperation(matrix1, matrix2, matrixResult, quad3);
+                    ThreadOperation thread4 = new ThreadOperation(matrix1, matrix2, matrixResult, quad4);
 
                     //start the threads
                     thread1.start();
@@ -130,25 +149,13 @@ public class Server
                     {
                         System.out.println("Interrupted");
                     }   //end catch
-                    /*int[][] sum = addArrays(array1, array2);
-                    out.writeObject(sum);
-                    //cast to 2darray
-                    int[][] data_from_client = (int[][])message;
 
-                    //loop through rows
-                    for(int i=0; i<data_from_client.length; i++)
-                    {
-                        //loop through columns
-                        for(int j=0; j<data_from_client[i].length; j++)
-                        {
-                            //print at index
-                            System.out.print(data_from_client[i][j] + " ");
-                        }
-                        //print lines between rows
-                        System.out.println();
-                    }
-                    System.out.println();*/
-                }
+                    //print in server
+                    print2dArray(matrixResult);
+
+                    //send the matrix to the client
+                    sendData(matrixResult);
+                }   //end if
             }   //end try
             catch (ClassNotFoundException e)
             {
@@ -201,5 +208,22 @@ public class Server
         {
             System.out.println("\nError writing object");
         }
-    }
+    }   //end sendData
+
+    //method that prints out the 2D array
+    public static void print2dArray(int[][] matrix)
+    {
+        //loop through the rows
+        for(int i=0; i< matrix.length; i++)
+        {
+            //loop through the columns
+            for (int j = 0; j<matrix[i].length; j++)
+            {
+                //print the value
+                System.out.printf("%d ", matrix[i][j]);
+            }   //end for loop columns
+            //print a line, so the next row can print below
+            System.out.println();
+        }   //end for loop rows
+    }  //end print2dArray
 }   //end class
