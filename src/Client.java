@@ -143,7 +143,20 @@ public class Client extends JFrame
             try // read message and display it
             {
                 message = input.readObject(); // read new message
-                System.out.println("\nSERVER>>> " + message);
+
+                //if the message is a string cast it and print to command line
+                if(message instanceof String)
+                {
+                    String messageToPrint = (String) message;
+                    System.out.println("\nSERVER>>> " + messageToPrint);
+                }
+
+                //if the message is a 2darray cast and print to text area of GUI
+                if(message instanceof int[][])
+                {
+                    int[][] matrixForGUI = (int[][]) message;
+                    displayArea.setText(matrixToString(matrixForGUI));
+                }
             }
             catch (ClassNotFoundException classNotFoundException)
             {
@@ -223,8 +236,6 @@ public class Client extends JFrame
                 System.exit(1);
             }
         }
-
-
     }   //end getFile
 
     //method that reads the matrix from the file and sets it to the new matrix to be used in the thread
@@ -264,19 +275,21 @@ public class Client extends JFrame
     }   //  end setTextFieldEditable
 
     //method that prints out the 2D array
-    public static void print2dArray(int[][] matrix)
+    public String matrixToString(int[][] matrix)
     {
+        String s = "";
         //loop through the rows
         for(int i=0; i< matrix.length; i++)
         {
             //loop through the columns
             for (int j = 0; j<matrix[i].length; j++)
             {
-                //print the value
-                System.out.printf("%d ", matrix[i][j]);
+                //add value to string
+                s += matrix[i][j];
             }   //end for loop columns
-            //print a line, so the next row can print below
-            System.out.println();
+            //add line to string
+            s += "\n";
         }   //end for loop rows
-    }  //end print2dArray
+        return s;
+    }  //end matrixToString
 }   //end class
