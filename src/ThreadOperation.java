@@ -28,30 +28,112 @@ public class ThreadOperation extends Thread
         //if it is the 1st quad change the end of rows/cols
         if(quadrant == "First Quadrant")
         {
-            rowEnd = rows/2;
-            colEnd = columns/2;
+            //if there are an even number of rows, odd number of indexes
+            if (rows % 2 == 0)
+            {
+                rowEnd = (rows/2) - 1;
+            }
+            //if there are an odd number of rows, even number of indexes
+            else
+            {
+                rowEnd = rows/2;
+            }
+
+            //if there are an even number of columns, odd number of indexes
+            if (columns % 2 == 0)
+            {
+                colEnd = (columns/2) - 1;
+            }
+            //if there are an odd number of columns, even number of indexes
+            else
+            {
+                colEnd = columns/2;
+            }
         }
         //if 2nd quad change row end and col start/end
         if (quadrant == "Second Quadrant")
         {
-            rowEnd = rows/2;
-            colStart = (columns/2)+1;
-            colEnd = columns;
+            //columns end at the index of the last column
+            colEnd = columns - 1;
+
+            //if there are an even number of rows, odd number of indexes
+            if (rows % 2 == 0)
+            {
+                rowEnd = (rows/2) - 1;
+            }
+            //if there are an odd number of rows, even number of indexes
+            else
+            {
+                rowEnd = rows/2;
+            }
+
+            //if there are an even number of columns, odd number of indexes
+            if (columns % 2 == 0)
+            {
+                colStart = (columns/2) - 1;
+            }
+            //if there are an odd number of columns, even number of indexes
+            else
+            {
+                colStart = columns;
+            }
         }
         //if 3rd quad change row start/end and col end
         if(quadrant == "Third Quadrant")
         {
-            rowStart = (rows/2)+1;
-            rowEnd = rows;
-            colEnd = columns/2;
+            //rows end  at the index of the last row
+            rowEnd = rows - 1;
+
+            //if there are an even number of rows, odd number of indexes
+            if (rows % 2 == 0)
+            {
+                rowStart = rows/2;
+            }
+            //if there are an odd number of rows, even number of indexes
+            else
+            {
+                rowStart = (rows/2) + 1;
+            }
+
+            //if there are an even number of columns, odd number of indexes
+            if (columns % 2 == 0)
+            {
+                colEnd = (columns/2) - 1;
+            }
+            //if there are an odd number of columns, even number of indexes
+            else
+            {
+                colEnd = columns/2;
+            }
         }
         //if 4th quad change row/col end/start
         if(quadrant == "Fourth Quadrant")
         {
-            rowStart = (rows/2)+1;
-            rowEnd = rows;
-            colStart = (columns/2)+1;
-            colEnd = columns;
+            //rows and columns  end at the index of their last value
+            rowEnd = rows - 1;
+            colEnd = columns - 1;
+
+            //if there are an even number of rows, odd number of indexes
+            if (rows % 2 == 0)
+            {
+                rowStart = rows/2;
+            }
+            //if there are an odd number of rows, even number of indexes
+            else
+            {
+                rowStart = (rows/2) + 1;
+            }
+
+            //if there are an even number of columns, odd number of indexes
+            if (columns % 2 == 0)
+            {
+                colStart = columns/2;
+            }
+            //if there are an odd number of columns, even number of indexes
+            else
+            {
+                colStart = (columns/2) + 1;
+            }
         }
 
         //store the values for the row/col start/end into array and return it.
