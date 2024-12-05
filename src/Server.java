@@ -101,23 +101,6 @@ public class Server
                     int[][] matrix1 = (int[][]) message;
                     int[][] matrix2 = (int[][]) input.readObject();
 
-                    for(int[] row: matrix1)
-                    {
-                        for(int element: row) {
-                            System.out.print(element + " ");
-                        }
-                        System.out.println();
-                    }
-                    System.out.println();
-                    for(int[] row: matrix2)
-                    {
-                        for(int element: row) {
-                            System.out.print(element + " ");
-                        }
-                        System.out.println();
-                    }
-                    System.out.println();
-
                     int[][] matrixResult = new int[matrix1.length][matrix1[0].length];
 
                     //create references to the four quadrants
@@ -150,7 +133,9 @@ public class Server
                         System.out.println("Interrupted");
                     }   //end catch
 
-                    //print in server
+                    //TESTING print in server
+                    print2dArray(matrix1);
+                    print2dArray(matrix2);
                     print2dArray(matrixResult);
 
                     //send the matrix to the client
@@ -225,5 +210,6 @@ public class Server
             //print a line, so the next row can print below
             System.out.println();
         }   //end for loop rows
+        System.out.println();
     }  //end print2dArray
 }   //end class
